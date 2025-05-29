@@ -1,0 +1,16 @@
+[project]
+name = "uv"
+version = "3.13.1"
+description = "Search you clipboard in a dict"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "levenshtein>=0.27.1",
+    "pystray>=0.19.5",
+    "python-lzo",
+    "readmdict>=0.1.1",
+    "tkinterweb>=4.3.1",
+]
+
+[tool.uv.sources]
+python-lzo = { git = "https://github.com/jd-boyd/python-lzo" }
