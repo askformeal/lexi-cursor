@@ -5,7 +5,11 @@ description = "Search you clipboard in a dict"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "keyboard>=0.13.5",
     "levenshtein>=0.27.1",
+    "pyautogui>=0.9.54",
+    "pyinstaller>=6.13.0",
+    "pyperclip>=1.9.0",
     "pystray>=0.19.5",
     "python-lzo",
     "readmdict>=0.1.1",

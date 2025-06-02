@@ -1,4 +1,6 @@
 {
-    "dict_path": "./dicts",
-    "log_level": "DEBUG"
+    "dict_path": "",
+    "log_level": "DEBUG",
+    "always_on_top": true,
+    "default_stray": "window"
 }

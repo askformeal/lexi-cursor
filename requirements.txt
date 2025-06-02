@@ -3,3 +3,5 @@ pystray
 readmdict
 levenshtein
 tkinterweb
+pyperclip
+keyboard
