@@ -218,13 +218,16 @@ class LexiCursor:
         Args:
             code (int, optional): exit code. Defaults to 0.
         """
-        if code == 0:
-            self.logger.info(f'Exit with code {code}')
-        else:
-            self.logger.error(f'Exit with code {code}')
         self.code = code
-        self.win.destroy()
-        self.win.quit()
+        try:
+            if code == 0:
+                self.logger.info(f'Exit with code {code}')
+            else:
+                self.logger.error(f'Exit with code {code}')
+            self.win.destroy()
+            self.win.quit()
+        except AttributeError:
+            sys.exit(1)
 
     def start(self) -> int:
         """Start LexiCursor

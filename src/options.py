@@ -10,17 +10,28 @@ class Options:
     def __init__(self, root):
         self.root = root
         self.settings = Settings()
-        self.load_options()
-        self.logger = Logger(__name__, self.log_level, 
+        self.logger = Logger(__name__, 30, 
                              self.settings.PATHS['options_log']
                              )
+        self.load_options()
         self.options_win_open = False
 
     def load_options(self):
         """Load from options file
         """        
-        with open(self.settings.PATHS['options'], 'r', encoding='utf-8') as f:
-            self.options = json.load(f)
+        try:
+            with open(self.settings.PATHS['options'], 'r', encoding='utf-8') as f:
+                try:
+                    self.options = json.load(f)
+                except json.decoder.JSONDecodeError as e:
+                    self.logger.critical(f'Failed to load option file: {e}\n\tTry to delete options.json')
+                    self.root.exit(code=1)
+        except FileNotFoundError:
+            self.logger.warning('Option file not found, restore to default')
+            with open(self.settings.DATA_PATHS['default_options'], 'r', encoding='utf-8') as f:
+                self.options = json.load(f)
+            with open(self.settings.PATHS['options'], 'w', encoding='utf-8') as f:
+                json.dump(self.options, f, indent=4)
         self.dict_path = self.options['dict_path']
         levels = {
             'NOTSET': 0,
@@ -31,6 +42,7 @@ class Options:
             'CRITICAL': 50,
         }
         self.log_level = levels[self.options['log_level']]
+        self.logger.setLevel(self.log_level)
         self.always_on_top = self.options['always_on_top']
         self.default_stray = self.options['default_stray']
 
