@@ -19,7 +19,7 @@ class Options:
     def load_options(self):
         """Load from options file
         """        
-        with open(self.settings.DATA_PATHS['options'], 'r', encoding='utf-8') as f:
+        with open(self.settings.PATHS['options'], 'r', encoding='utf-8') as f:
             self.options = json.load(f)
         self.dict_path = self.options['dict_path']
         levels = {
@@ -41,7 +41,7 @@ class Options:
             self.options['always_on_top'] = {'Yes':True, 'No':False}[always_on_top.get()]
             self.options['default_stray'] = default_stray.get()
 
-            with open(self.settings.DATA_PATHS['options'], 'w') as f:
+            with open(self.settings.PATHS['options'], 'w') as f:
                 json.dump(self.options, f, indent=4)
 
             self.logger.info(f'New options saved: {self.options}')

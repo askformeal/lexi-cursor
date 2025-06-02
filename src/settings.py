@@ -3,7 +3,7 @@ import os
 
 class Settings:
     def __init__(self):
-        self.VERSION = 'v0.0.0'
+        self.VERSION = 'v0.0.1'
         self.GITHUB_REPO = 'https://github.com/askformeal/lexi-cursor'
         self.WIDTH = 500
         self.HEIGHT = 700
@@ -16,6 +16,7 @@ class Settings:
         self.DICT_ICON_SIZE = (35,35)
 
         self.PATHS = {
+            'options': './options.json',
             'log_dir': './logs',
             'main_log': './logs/main.log',
             'options_log': './logs/options.log',
@@ -30,7 +31,6 @@ class Settings:
             'res': './data/res',
             'dict_res': './data/res/dict',
             'entries': './data/html/entry',
-            'options': './data/options.json',
             'default_options': './data/default_options.json',
             'home': './data/html/home.html',
             'icon': './data/icon.ico',
